@@ -18,7 +18,8 @@ online database in order to create a small viewpoint of their own library.
 some books that I have read before that were not published, so it was hard to keep track of them, even locally.
 
 ## User Stories
-- As a user, I want to be able to add a book to the catalog
+- As a user, I want to be able to add and remove a book to the catalog
 - As a user, I want to be able to view the list of books I have read on my catalog
-- As a user, I want to be able to select a book in my catalog to view the details and my views of the book
-- As a user, I want to be able to input the date I read the book, and rate it from one to 10 stars
+- As a user, I want to be able to rate the book from one to 10 stars and add a review to it
+- As a user, I want to be able to search and select a book in my catalog to view the details and my views of the book
+
