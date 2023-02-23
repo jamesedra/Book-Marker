@@ -40,7 +40,7 @@ public class Rating {
                 formatted.append('-');
                 formatted.append(System.lineSeparator());
                 charCount = 0;
-            } else if (charCount >= lineLength && c == ' ') {
+            } else if (charCount >= lineLength) {
                 formatted.append(System.lineSeparator());
                 charCount = 0;
             }
@@ -58,7 +58,12 @@ public class Rating {
         if (getRate() == 0) {
             return "none";
         }
+
         int num = getRate();
-        return num + " " + "* ".repeat(num).trim();
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < num; i++) {
+            stars.append("* ");
+        }
+        return num + " " + stars.toString().trim();
     }
 }
