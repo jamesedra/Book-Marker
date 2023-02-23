@@ -13,12 +13,15 @@ public class RatingTest {
     @BeforeEach
     void runBefore() {
         testRating = new Rating();
-        testRating.setRate(8);
-        testRating.setReview(shortReview);
     }
 
     @Test
+    void testFormatReviewWhenNull() {
+        assertEquals(testRating.formatReview(), "none");
+    }
+    @Test
     void testFormatReviewShort() {
+        testRating.setReview(shortReview);
         assertEquals(testRating.formatReview(), shortReview);
     }
 
@@ -32,7 +35,13 @@ public class RatingTest {
     }
 
     @Test
-    void testFormatRateScore() {
+    void testFormatRateScoreWhenNotSet() {
+        assertEquals(testRating.formatRateScore(), "none");
+    }
+    
+    @Test
+    void testFormatRateScoreWhenSet() {
+        testRating.setRate(8);
         assertEquals(testRating.formatRateScore(), "8 * * * * * * * *");
     }
 }

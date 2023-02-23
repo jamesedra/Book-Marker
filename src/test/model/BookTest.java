@@ -20,6 +20,21 @@ public class BookTest {
         assertEquals(testBook.getAuthor(), "J.K. Rowling");
         assertEquals(testBook.getDate(), 1999);
         assertEquals(testBook.getRating(), rating);
+        assertEquals(testBook.rateToStar(), "none");
+        assertEquals(testBook.printReview(), "none");
+    }
+
+    @Test
+    void changeFieldValues() {
+        testBook.setTitle("Lord of the Rings");
+        testBook.setAuthor("J.R.R. Tolkien");
+        testBook.setDate(1954);
+        Rating rating2 = new Rating();
+        testBook.setRating(rating2);
+        assertEquals(testBook.getTitle(), "Lord of the Rings");
+        assertEquals(testBook.getAuthor(), "J.R.R. Tolkien");
+        assertEquals(testBook.getDate(), 1954);
+        assertEquals(testBook.getRating(), rating2);
     }
 
     @Test

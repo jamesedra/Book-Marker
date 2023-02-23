@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+
 public class BookListTest {
     private BookList testBookList;
-    private Rating nullRating = new Rating();
-    private Book book0 = new Book("Book0", "Author0", 2000, nullRating);
-    private Book book1 = new Book("Book1", "Author1", 2001, nullRating);
+    private final Rating nullRating = new Rating();
+    private final Book book0 = new Book("Book0", "Author0", 2000, nullRating);
+    private final Book book1 = new Book("Book1", "Author1", 2001, nullRating);
+    private final Book book2 = new Book("Book2", "Author2", 2002, nullRating);
 
     @BeforeEach
     void runBefore() {
@@ -37,8 +40,12 @@ public class BookListTest {
     }
 
     @Test
+    void testRemoveBookWhenNoBooks() {
+        assertFalse(testBookList.removeBook(book0));
+    }
+
+    @Test
     void testAddBookWhenFull() {
-        Book book2 = new Book("Book2", "Author2", 2002, nullRating);
         Book book3 = new Book("Book3", "Author3", 2003, nullRating);
         Book book4 = new Book("Book4", "Author4", 2004, nullRating);
         Book book5 = new Book("Book5", "Author5", 2005, nullRating);
@@ -91,6 +98,21 @@ public class BookListTest {
         assertTrue(testBookList.addBook(book0));
         String testTitle = book1.getTitle();
         assertFalse(testBookList.checkDuplicate(testTitle));
+    }
+
+    @Test
+    void testViewBookList() {
+        LinkedList<Book> library;
+        testBookList.addBook(book0);
+        testBookList.addBook(book1);
+        testBookList.addBook(book2);
+
+        // Get the book list and check that it contains the expected books
+        library = testBookList.viewBookList();
+        assertEquals(3, testBookList.length());
+        assertTrue(library.contains(book0));
+        assertTrue(library.contains(book1));
+        assertTrue(library.contains(book2));
     }
 
 }
