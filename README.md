@@ -22,4 +22,6 @@ some books that I have read before that were not published, so it was hard to ke
 - As a user, I want to be able to view the list of books I have read on my catalog
 - As a user, I want to be able to rate the book from one to 10 stars and add a review to it
 - As a user, I want to be able to search and select a book in my catalog to view the details and my views of the book
+- As a user, I want to be given the option to load a book list/library from file.
+- As a user, I want to be given the option to save my library to file.
 

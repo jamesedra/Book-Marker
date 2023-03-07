@@ -1,0 +1,26 @@
+{
+    "book list": [
+        {
+            "date": 1999,
+            "rating score": 8,
+            "author": "J.K. Rowling",
+            "review": "One of the best books of all time.",
+            "title": "Harry Potter and the Prisoner of Azkaban"
+        },
+        {
+            "date": 1954,
+            "rating score": 0,
+            "author": "J.R.R. Tolkien",
+            "review": "none",
+            "title": "The Lord of the Rings: The Fellowship of the Ring"
+        },
+        {
+            "date": 1958,
+            "rating score": 0,
+            "author": "Osamu Dazai",
+            "review": "none",
+            "title": "No Longer Human"
+        }
+    ],
+    "name": "My book list"
+}

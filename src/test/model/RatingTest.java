@@ -17,6 +17,7 @@ public class RatingTest {
 
     @Test
     void testFormatReviewWhenNull() {
+        assertEquals(testRating.getReview(), "none");
         assertEquals(testRating.formatReview(), "none");
     }
     @Test
@@ -31,6 +32,7 @@ public class RatingTest {
         String formattedExpected = "This book is undoubtedly darker than the previous "
         + System.lineSeparator() + "ones, as Harry learns more and more about the sini-"
                 + System.lineSeparator() + "ster forces that threaten the wizarding world.";
+        assertEquals(testRating.getReview(), longReview);
         assertEquals(testRating.formatReview(), formattedExpected);
     }
 
@@ -42,6 +44,6 @@ public class RatingTest {
     @Test
     void testFormatRateScoreWhenSet() {
         testRating.setRate(8);
-        assertEquals(testRating.formatRateScore(), "8 * * * * * * * *");
+        assertEquals(testRating.formatRateScore(), " * * * * * * * *");
     }
 }

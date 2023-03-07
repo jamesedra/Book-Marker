@@ -3,7 +3,11 @@ package ui;
 import model.Book;
 import model.BookList;
 import model.Rating;
+import persistence.Reader;
+import persistence.Writer;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Book Marker application
@@ -12,9 +16,15 @@ public class BookMarker {
     private BookList bookList;
     private Rating rating;
     private Scanner input;
+    private Writer writer;
+    private Reader reader;
+    private static final String JSON_STORE = "./data/bookList.json";
 
     // EFFECTS: runs the Book Marker application
     public BookMarker() {
+        input = new Scanner(System.in);
+        writer = new Writer(JSON_STORE);
+        reader = new Reader(JSON_STORE);
         runBookMarker();
     }
 
@@ -50,7 +60,7 @@ public class BookMarker {
     // MODIFIES: this
     // EFFECTS: initializes a book list
     private void init() {
-        bookList = new BookList();
+        bookList = new BookList("My book list");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -61,7 +71,9 @@ public class BookMarker {
         System.out.println("\tc -> Check Your Library");
         System.out.println("\ta -> Add a Book");
         System.out.println("\tr -> Remove a Book");
-        System.out.println("\ts -> Search for a Book");
+        System.out.println("\tm -> Mark / Look for a Book");
+        System.out.println("\ts -> Save your Library");
+        System.out.println("\tl -> Load your Library");
         System.out.println("\tq -> Quit");
     }
 
@@ -74,10 +86,34 @@ public class BookMarker {
             addBook();
         } else if (command.equals("r")) {
             removeBook();
-        } else if (command.equals("s")) {
+        } else if (command.equals("m")) {
             searchBooks();
+        } else if (command.equals("s")) {
+            saveBookList();
+        } else if (command.equals("l")) {
+            loadBookList();
         } else {
             System.out.println("Selection not valid...");
+        }
+    }
+
+    private void loadBookList() {
+        try {
+            bookList = reader.read();
+            System.out.println("Loaded " + bookList.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    private void saveBookList() {
+        try {
+            writer.open();
+            writer.write(bookList);
+            writer.close();
+            System.out.println("Saved " + bookList.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 
@@ -134,10 +170,10 @@ public class BookMarker {
         String select = input.nextLine();
         if (select.equalsIgnoreCase("y")) {
             System.out.println("Please enter your rating on a scale of 1 to 10.");
-            int rate = input.nextInt();
+            double rate = input.nextDouble();
             while (rate < 1 || rate > 10) {
                 System.out.println("Please only enter an integer on a scale of 1 to 10.");
-                rate = input.nextInt();
+                rate = input.nextDouble();
             }
             rating.setRate(rate);
             System.out.println("Rating published!");
@@ -205,7 +241,7 @@ public class BookMarker {
         System.out.println("Please enter the title or the author of the book.");
         String userInput = input.nextLine();
         // Create a new Book List to store the matching books
-        BookList matchingBooks = new BookList();
+        BookList matchingBooks = new BookList("for match");
         matchBooksFromInput(userInput, matchingBooks);
         searchResults(matchingBooks);
         viewingAndSelecting(matchingBooks, true);
@@ -286,7 +322,12 @@ public class BookMarker {
         System.out.println("Author: " + book.getAuthor());
         System.out.println("Date: " + book.getDate());
         System.out.println("----------------");
-        System.out.println("Rating: " + book.rateToStar());
+        if (book.getRating().getRate() < 1) {
+            System.out.println("Rating: none");
+        } else {
+            System.out.printf("Rating: " + "%.1f" + book.rateToStar(), book.getRating().getRate());
+        }
+        System.out.println();
         System.out.println("Review: ");
         System.out.println(book.printReview());
         editDetails();

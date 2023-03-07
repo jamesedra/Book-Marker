@@ -1,0 +1,19 @@
+{
+    "book list": [
+        {
+            "date": 1999,
+            "rating score": 8,
+            "author": "Author 1",
+            "review": "Best book",
+            "title": "Book 1"
+        },
+        {
+            "date": 2000,
+            "rating score": 0,
+            "author": "Author 2",
+            "review": "none",
+            "title": "Book 2"
+        }
+    ],
+    "name": "My book list"
+}

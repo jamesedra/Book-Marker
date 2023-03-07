@@ -1,16 +1,22 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.LinkedList;
 
-public class BookList {
+public class BookList implements Writable {
     private LinkedList<Book> bookList;
+    private String name;
     public static final int MAX_SIZE = 10;
 
     /*
      * MODIFIES: this
      * EFFECTS: constructs a new book list
      */
-    public BookList() {
+    public BookList(String name) {
+        this.name = name;
         this.bookList = new LinkedList<>();
     }
 
@@ -56,11 +62,16 @@ public class BookList {
         return false;
     }
 
+    public String getName() {
+        return this.name;
+    }
     /*
      * REQUIRES: index > 0 and index < the length of the book list
      * EFFECTS: returns a book based on the index
      */
+    @SuppressWarnings("checkstyle:EmptyLineSeparator")
     public Book getBookFromIndex(int index) {
+
         return bookList.get(index - 1);
     }
 
@@ -90,6 +101,24 @@ public class BookList {
      */
     public boolean isFull() {
         return MAX_SIZE <= length();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("book list", bookListToJson());
+        return json;
+    }
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray bookListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Book b : bookList) {
+            jsonArray.put(b.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

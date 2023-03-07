@@ -1,10 +1,10 @@
 package model;
 
 public class Rating {
-    private int rate;
+    private double rate;
     private String review;
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
@@ -12,10 +12,16 @@ public class Rating {
         this.review = review;
     }
 
-    public int getRate() {
+    public double getRate() {
         return this.rate;
     }
 
+    public String getReview() {
+        if (this.review == null) {
+            return "none";
+        }
+        return this.review;
+    }
 
     /*
      * EFFECTS: returns a string of a review formatted with line breaks
@@ -59,11 +65,11 @@ public class Rating {
             return "none";
         }
 
-        int num = getRate();
+        double num = getRate();
         StringBuilder stars = new StringBuilder();
         for (int i = 0; i < num; i++) {
             stars.append("* ");
         }
-        return num + " " + stars.toString().trim();
+        return " " + stars.toString().trim();
     }
 }

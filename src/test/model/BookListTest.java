@@ -15,7 +15,7 @@ public class BookListTest {
 
     @BeforeEach
     void runBefore() {
-        testBookList = new BookList();
+        testBookList = new BookList("stub");
     }
 
     @Test
