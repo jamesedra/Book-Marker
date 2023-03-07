@@ -65,13 +65,12 @@ public class BookList implements Writable {
     public String getName() {
         return this.name;
     }
+
     /*
      * REQUIRES: index > 0 and index < the length of the book list
      * EFFECTS: returns a book based on the index
      */
-    @SuppressWarnings("checkstyle:EmptyLineSeparator")
     public Book getBookFromIndex(int index) {
-
         return bookList.get(index - 1);
     }
 
@@ -110,7 +109,8 @@ public class BookList implements Writable {
         json.put("book list", bookListToJson());
         return json;
     }
-    // EFFECTS: returns things in this workroom as a JSON array
+
+    // EFFECTS: returns books in this book list as a JSON array
     private JSONArray bookListToJson() {
         JSONArray jsonArray = new JSONArray();
 
