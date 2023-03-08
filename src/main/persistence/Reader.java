@@ -11,7 +11,7 @@ import model.BookList;
 import model.Rating;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads book list from JSON data stored in file
 public class Reader {
     private String source;
 

@@ -1,5 +1,6 @@
 package model;
 
+// Represents a rating having a score and a review
 public class Rating {
     private double rate;
     private String review;

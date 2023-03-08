@@ -6,6 +6,7 @@ import persistence.Writable;
 
 import java.util.LinkedList;
 
+// Represents a book list having a name and a list of books
 public class BookList implements Writable {
     private LinkedList<Book> bookList;
     private String name;
