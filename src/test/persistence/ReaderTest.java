@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class ReaderTest extends JsonTest {
 
+    // This test case was copied from CPSC 210 WorkRoomApp
     @Test
     void testReaderNonExistentFile() {
         Reader reader = new Reader("./data/noSuchFile.json");
@@ -24,6 +25,7 @@ class ReaderTest extends JsonTest {
         }
     }
 
+    // This test case was adapted from CPSC 210 WorkRoomApp
     @Test
     void testReaderEmptyBookList() {
         Reader reader = new Reader("./data/testReaderEmptyBookList.json");
@@ -36,6 +38,7 @@ class ReaderTest extends JsonTest {
         }
     }
 
+    // This test case was adapted from CPSC 210 WorkRoomApp
     @Test
     void testReaderGeneralBookList() {
         Reader reader = new Reader("./data/testReaderGeneralBookList.json");

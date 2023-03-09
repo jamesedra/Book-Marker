@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class WriterTest extends JsonTest {
 
+    // This test case was adapted from CPSC 210 WorkRoomApp
     @Test
     void testWriterInvalidFile() {
         try {
@@ -25,6 +26,7 @@ class WriterTest extends JsonTest {
         }
     }
 
+    // This test case was adapted from CPSC 210 WorkRoomApp
     @Test
     void testWriterEmptyBookList() {
         try {
@@ -43,6 +45,7 @@ class WriterTest extends JsonTest {
         }
     }
 
+    // This test case was adapted from CPSC 210 WorkRoomApp
     @Test
     void testWriterGeneralBookList() {
         try {
