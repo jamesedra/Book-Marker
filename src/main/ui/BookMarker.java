@@ -186,15 +186,15 @@ public class BookMarker {
         String select = input.nextLine();
         if (select.equalsIgnoreCase("y")) {
             System.out.println("Please enter your rating on a scale of 1 to 10.");
-            double rate = input.nextDouble();
-            while (rate < 1 || rate > 10) {
+            String testRate = input.nextLine();
+            while (!isProperRating(testRate)) {
                 System.out.println("Please only enter an integer on a scale of 1 to 10.");
-                rate = input.nextDouble();
+                testRate = input.nextLine();
             }
+            double rate = Double.parseDouble(testRate);
             rating.setRate(rate);
             System.out.println("Rating published!");
             System.out.println("Would you like to add your review? Enter 'y' if yes, press any key if no.");
-            input.nextLine();
             select = input.nextLine();
             if (select.equalsIgnoreCase("y")) {
                 System.out.println("Please enter a short review for the book");
@@ -203,6 +203,18 @@ public class BookMarker {
             }
             System.out.println("Review published!");
         }
+    }
+
+    // EFFECTS: returns true if the String can be used for rating books
+    private static boolean isProperRating(String num) {
+        try {
+            Double.parseDouble(num.trim());
+        } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return Double.parseDouble(num.trim()) >= 1 && Double.parseDouble(num.trim()) <= 10;
     }
 
     // MODIFIES: this
