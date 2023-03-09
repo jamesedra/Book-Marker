@@ -15,11 +15,13 @@ import org.json.*;
 public class Reader {
     private String source;
 
+    // This constructor was copied from CPSC 210 WorkRoomApp
     // EFFECTS: constructs reader to read from source file
     public Reader(String source) {
         this.source = source;
     }
 
+    // This method was adapted from CPSC 210 WorkRoomApp
     // EFFECTS: reads book list from file and returns it;
     // throws IOException if an error occurs reading data from file
     public BookList read() throws IOException {
@@ -28,6 +30,7 @@ public class Reader {
         return parseBookList(jsonObject);
     }
 
+    // This method was copied from CPSC 210 WorkRoomApp
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
@@ -39,6 +42,7 @@ public class Reader {
         return contentBuilder.toString();
     }
 
+    // This method was adapted from CPSC 210 WorkRoomApp
     // EFFECTS: parses book list from JSON object and returns it
     private BookList parseBookList(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
@@ -47,6 +51,7 @@ public class Reader {
         return bl;
     }
 
+    // This method was adapted from CPSC 210 WorkRoomApp
     // MODIFIES: bl
     // EFFECTS: parses book list from JSON object and adds them to workroom
     private void addBookList(BookList bl, JSONObject jsonObject) {
@@ -57,6 +62,7 @@ public class Reader {
         }
     }
 
+    // This method was adapted from CPSC 210 WorkRoomApp
     // MODIFIES: bl
     // EFFECTS: parses books from JSON object and adds it to workroom
     private void addBooks(BookList bl, JSONObject jsonObject) {
