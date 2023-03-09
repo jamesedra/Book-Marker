@@ -88,6 +88,9 @@ public class Book implements Writable {
         this.rating = rating;
     }
 
+    /*
+     * This method was adapted from CPSC 210 WorkRoomApp
+     */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
