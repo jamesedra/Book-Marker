@@ -138,8 +138,12 @@ public class BookMarker {
         System.out.println("Author: ");
         String author = input.nextLine();
         System.out.println("Date: ");
-        int date = input.nextInt();
-        input.nextLine();
+        String testDate = input.nextLine();
+        while (!isInteger(testDate)) {
+            System.out.println("Please enter the year of the published date.");
+            testDate = input.nextLine();
+        }
+        int date = Integer.parseInt(testDate);
         System.out.println("Would you also like to add a rating? Enter 'y' if yes, press any key if no.");
         addRatingAndReview();
         System.out.println("Adding book...");
@@ -147,6 +151,18 @@ public class BookMarker {
             System.out.println("Library is Full! Please remove a book from the library first.");
         }
         System.out.println(title + " by " + author + " has been added to your library!");
+    }
+
+    // EFFECTS: returns true if the String is an integer
+    private static boolean isInteger(String num) {
+        try {
+            Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 
     // MODIFIES: this
