@@ -12,10 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class WriterTest extends JsonTest {
-    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
-    //write data to a file and then use the reader to read it back in and check that we
-    //read in a copy of what was written out.
 
+    // This test case was adapted from CPSC 210 WorkRoomApp
     @Test
     void testWriterInvalidFile() {
         try {
@@ -28,6 +26,7 @@ class WriterTest extends JsonTest {
         }
     }
 
+    // This test case was adapted from CPSC 210 WorkRoomApp
     @Test
     void testWriterEmptyBookList() {
         try {
@@ -46,6 +45,7 @@ class WriterTest extends JsonTest {
         }
     }
 
+    // This test case was adapted from CPSC 210 WorkRoomApp
     @Test
     void testWriterGeneralBookList() {
         try {

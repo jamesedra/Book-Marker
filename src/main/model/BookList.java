@@ -103,6 +103,9 @@ public class BookList implements Writable {
         return MAX_SIZE <= length();
     }
 
+    /*
+     * This method was adapted from CPSC 210 WorkRoomApp
+     */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -111,7 +114,10 @@ public class BookList implements Writable {
         return json;
     }
 
-    // EFFECTS: returns books in this book list as a JSON array
+    /*
+     * This method was adapted from CPSC 210 WorkRoomApp
+     * EFFECTS: returns books in this book list as a JSON array
+     */
     private JSONArray bookListToJson() {
         JSONArray jsonArray = new JSONArray();
 
