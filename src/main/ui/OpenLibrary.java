@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import static ui.BookMarkerGUI.bookList;
 
+// Represents the window for showing the book list
 public class OpenLibrary extends JFrame implements ActionListener {
     JList<String> bookJList;
     JScrollPane bookScrollPane;
@@ -20,6 +21,9 @@ public class OpenLibrary extends JFrame implements ActionListener {
     JButton viewBook;
     JButton editBook;
 
+    // MODIFIES: this
+    // EFFECTS: runs the Open Library window
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public OpenLibrary() {
         DefaultListModel<String> bookListModel = new DefaultListModel<>();
         for (Book book : bookList.viewBookList()) {
@@ -57,6 +61,8 @@ public class OpenLibrary extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the JButtons
     public void setButtons() {
         buttonPanel = new JPanel(new FlowLayout());
         viewBook = new JButton("View Book");
@@ -85,6 +91,9 @@ public class OpenLibrary extends JFrame implements ActionListener {
 
     }
 
+    // REQUIRES: text != null, gridx > 0, gridy > 0, weightx > 0, left != null
+    // MODIFIES: this
+    // EFFECTS: creates a proper JLabel depending on their column placement(left or right)
     public JLabel createJLabelForViewingBooks(GridBagConstraints gbc, String text, int gridx, int gridy,
                                               double weightx, boolean left) {
         JLabel temp = new JLabel(text);
@@ -100,6 +109,8 @@ public class OpenLibrary extends JFrame implements ActionListener {
         return temp;
     }
 
+    // EFFECTS: shows a new window for the details of the book
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("view")) {
@@ -112,7 +123,29 @@ public class OpenLibrary extends JFrame implements ActionListener {
                         bookDetailsFrame.setSize(400, 150);
                         bookDetailsFrame.setLocationRelativeTo(null);
 
+                        /*
+
+                        does not work yet
+
+                        // create a new JPanel for the background image
+                        JPanel backgroundPanel = new JPanel(new BorderLayout());
+                        backgroundPanel.setOpaque(true);
+
+                        // create a new JLabel with the background image
+                        ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/logo.png"));
+
+                        JLabel backgroundLabel = new JLabel(backgroundImage);
+                        backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
+
+                        // add the background label to the background panel
+                        backgroundPanel.add(backgroundLabel);
+
+                         */
+
+                        // ------------------------------------------------------------------
+                        // Creates a panel that adds the details of the book
                         JPanel detailsPanel = new JPanel(new GridBagLayout());
+                        detailsPanel.setOpaque(true);
                         detailsPanel.setBackground(BookAdder.saffron);
 
                         // create GridBagConstraints with default values
@@ -170,7 +203,23 @@ public class OpenLibrary extends JFrame implements ActionListener {
                         JLabel reviewValueLabel = createJLabelForViewingBooks(gbc, book.printReview(),
                                 1, 4, 1.0, false);
                         detailsPanel.add(reviewValueLabel, gbc);
+                        // ------------------------------------------------------------------
 
+                        /*
+
+                        does not work yet
+                        // add the details panel to the center of the background panel
+                        backgroundPanel.add(detailsPanel, BorderLayout.CENTER);
+
+                        // add the background panel to the book details frame
+                        bookDetailsFrame.setContentPane(backgroundPanel);
+                        bookDetailsFrame.setVisible(true);
+
+
+
+                         */
+                        // add the details panel to the background panel
+                        //backgroundPanel.add(detailsPanel, BorderLayout.CENTER);
                         bookDetailsFrame.add(detailsPanel);
                         bookDetailsFrame.setVisible(true);
                         break;

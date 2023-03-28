@@ -12,7 +12,7 @@ import static ui.BookMarkerGUI.book;
 import static ui.BookMarkerGUI.bookList;
 import static ui.BookMarkerGUI.rating;
 
-
+// Represents the window for adding a book to the book list
 public class BookAdder extends JFrame implements ActionListener {
 
     private JLabel backgroundLabel;
@@ -33,6 +33,8 @@ public class BookAdder extends JFrame implements ActionListener {
 
     static Color saffron = new Color(232,195,108);
 
+    // MODIFIES: this
+    // EFFECTS: runs the Add Books window
     public BookAdder() {
         super("Add a Book");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -43,10 +45,26 @@ public class BookAdder extends JFrame implements ActionListener {
         backgroundLabel.setLayout(null); // Set the layout to null
         setContentPane(backgroundLabel);
 
+        // set the fields
         setFields();
+
+        // add the labels and fields to the frame
         addLabelsAndFields();
         add(new JLabel()); // Empty label for spacing
 
+        // set the add book button
+        setAddBookButton();
+
+        backgroundLabel.add(addBookButton);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setResizable(false);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes and sets the format of the add book button
+    private void setAddBookButton() {
         addBookButton = new JButton("Add Book");
         addBookButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
         addBookButton.setOpaque(true);
@@ -59,14 +77,10 @@ public class BookAdder extends JFrame implements ActionListener {
 
         // Set the position and size of the addBookButton
         addBookButton.setBounds(160, 210, 100, 30);
-        backgroundLabel.add(addBookButton);
-
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setResizable(false);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the labels, text fields, slider, and combo box to the background JLabel
     private void addLabelsAndFields() {
         titleLabel.setBounds(30, 30, 100, 20);
         backgroundLabel.add(titleLabel);
@@ -100,6 +114,8 @@ public class BookAdder extends JFrame implements ActionListener {
         backgroundLabel.add(bookReview);
     }
 
+    // REQUIRES: width > 0
+    // EFFECTS: creates a proper text field for the add book window
     private JTextField createTextField(int width) {
         JTextField textField = new JTextField();
         textField.setPreferredSize(new Dimension(width, 30));
@@ -109,6 +125,8 @@ public class BookAdder extends JFrame implements ActionListener {
         return textField;
     }
 
+    // REQUIRES: width > 0
+    // EFFECTS: creates a proper combo box for the add book window
     private JComboBox<Integer> createYearComboBox(int width) {
         JComboBox<Integer> comboBox = new JComboBox<>();
         Integer[] years = new Integer[104];
@@ -122,6 +140,8 @@ public class BookAdder extends JFrame implements ActionListener {
         return comboBox;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the fields, labels, combo box, and slider for the add book window
     private void setFields() {
         titleLabel = createLabel("Title: ");
         bookTitle = createTextField(250);
@@ -135,6 +155,8 @@ public class BookAdder extends JFrame implements ActionListener {
         bookReview = createTextField(250);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a proper JLabel for the add box window
     private JLabel createLabel(String text) {
         JLabel temp = new JLabel(text);
         temp.setForeground(Color.white);
@@ -142,6 +164,8 @@ public class BookAdder extends JFrame implements ActionListener {
         return temp;
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a proper rating slider for the add box window
     private JPanel createRatingPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.add(ratingSlider);
@@ -152,6 +176,8 @@ public class BookAdder extends JFrame implements ActionListener {
         return panel;
     }
 
+    // EFFECTS: tries to place the book to the book list
+    //          if it's successful, will print a success message
     @Override
     public void actionPerformed(ActionEvent e) {
         rating = new Rating();
@@ -179,11 +205,14 @@ public class BookAdder extends JFrame implements ActionListener {
         successMessage();
     }
 
+    // EFFECTS: creates a new JFrame for the success message of adding a book
     public void successMessage() {
         JFrame successFrame = new JFrame("Success");
         successFrame.setPreferredSize(new Dimension(200, 100));
         JLabel successLabel = new JLabel("Book added successfully");
+        successLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
         successLabel.setHorizontalAlignment(JLabel.CENTER);
+        successFrame.getContentPane().setBackground(saffron);
         successFrame.add(successLabel);
         successFrame.pack();
         successFrame.setLocationRelativeTo(null);

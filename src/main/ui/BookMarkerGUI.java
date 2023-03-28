@@ -16,7 +16,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// Book Marker Application with java swing GUI
 public class BookMarkerGUI extends JFrame {
+
+    // Frame
+    JFrame frame = new JFrame();
+
+    // Panel
+    JPanel toolPanel = new JPanel();
 
     // Buttons
     JButton openLibraryButton = new JButton("Open Library");
@@ -32,12 +39,6 @@ public class BookMarkerGUI extends JFrame {
     static Color bgColor = new Color(80, 41, 28);
     static Color buttonColor = new Color(234, 186, 65);
 
-    // Frame
-    JFrame frame = new JFrame();
-
-    // Panels
-    JPanel toolPanel = new JPanel();
-
     // Data
     protected static Book book;
     protected static BookList bookList;
@@ -49,6 +50,7 @@ public class BookMarkerGUI extends JFrame {
     // Splash screen
     private JWindow splashScreen;
 
+    // EFFECTS: runs the Book Marker application
     public BookMarkerGUI() {
         initializeSplashScreen();
         initializeButtons();
@@ -59,6 +61,8 @@ public class BookMarkerGUI extends JFrame {
         splashScreen.dispose();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes a JWindow for a splash screen before the main menu
     public void initializeSplashScreen() {
         splashScreen = new JWindow();
         JLabel splashLabel = new JLabel(new ImageIcon("src/splashScreen1.gif"));
@@ -80,12 +84,16 @@ public class BookMarkerGUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the data
     public void initializeData() {
         bookList = new BookList("My book list");
         writer = new Writer(JSON_STORE);
         reader = new Reader(JSON_STORE);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the JButtons
     public void initializeButton(JButton button, String text, int x, int y,
                                   Font font, Color foreground, Color background) {
         button.setText(text);
@@ -104,6 +112,8 @@ public class BookMarkerGUI extends JFrame {
         button.addActionListener(new ButtonListener());
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the JButtons required for the main window
     public void initializeButtons() {
         initializeButton(openLibraryButton, "Open Library", 20, 50,
                 new Font("Times New Roman", Font.PLAIN, 17), textColor, buttonColor);
@@ -121,6 +131,8 @@ public class BookMarkerGUI extends JFrame {
                 new Font("Times New Roman", Font.PLAIN, 17), textColor, buttonColor);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the JFrames for the main window
     public void initializeFrame() {
         frame.setTitle("Book Marker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -171,7 +183,7 @@ public class BookMarkerGUI extends JFrame {
     class ButtonListener implements ActionListener {
 
         // EFFECTS: performs appropriate actions after buttons are clicked
-        // DISCLAIMER: method structure based on TellerApp:
+        // DISCLAIMER: this method is based on TellerApp:
         // https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -195,22 +207,25 @@ public class BookMarkerGUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: opens a new window to view the book list
     public void openLibraryAction() {
         new OpenLibrary();
     }
 
+    // MODIFIES: this
+    // EFFECTS: opens a new window to prompt the user to add a book/s
     public void addBookAction() {
         new BookAdder();
     }
 
-    public void removeBookAction() {
+    public void removeBookAction() { }
 
-    }
+    public void searchBooksAction() { }
 
-    public void searchBooksAction() {
-
-    }
-
+    // MODIFIES: this
+    // EFFECTS: loads a save data of a book list
+    //          a success message will be shown if the data was loaded correctly
     public void loadAction() {
         try {
             bookList = reader.read();
@@ -220,6 +235,9 @@ public class BookMarkerGUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: saves the current book list
+    //          a success message will be shown if the data was saved correctly
     public void saveAction() {
         try {
             writer.open();
@@ -231,6 +249,7 @@ public class BookMarkerGUI extends JFrame {
         }
     }
 
+    // EFFECTS: terminates the program
     public void quitAction() {
         System.exit(0);
     }
