@@ -96,8 +96,7 @@ public class OpenLibrary extends JFrame implements ActionListener {
         } else {
             gbc.fill = GridBagConstraints.HORIZONTAL; // fill available horizontal space
         }
-
-
+        temp.setFont(new Font("Times New Roman", Font.BOLD, 14));
         return temp;
     }
 
@@ -114,12 +113,14 @@ public class OpenLibrary extends JFrame implements ActionListener {
                         bookDetailsFrame.setLocationRelativeTo(null);
 
                         JPanel detailsPanel = new JPanel(new GridBagLayout());
+                        detailsPanel.setBackground(BookAdder.saffron);
 
                         // create GridBagConstraints with default values
                         GridBagConstraints gbc = new GridBagConstraints();
 
                         // add title label to the left column
                         JLabel titleLabel = new JLabel(" Title:");
+                        titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
                         gbc.gridx = 0;
                         gbc.gridy = 0;
                         gbc.anchor = GridBagConstraints.WEST; // align label to left side

@@ -20,6 +20,13 @@
             "author": "Osamu Dazai",
             "review": "none",
             "title": "No Longer Human"
+        },
+        {
+            "date": 1933,
+            "rating score": 6,
+            "author": "Erich Kastner",
+            "review": "It's alright.",
+            "title": "Flying Classroom"
         }
     ],
     "name": "My book list"

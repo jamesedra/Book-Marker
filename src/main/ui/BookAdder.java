@@ -4,7 +4,6 @@ import model.Book;
 import model.Rating;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +15,7 @@ import static ui.BookMarkerGUI.rating;
 
 public class BookAdder extends JFrame implements ActionListener {
 
+    private JLabel backgroundLabel;
     private JLabel titleLabel;
     private JLabel authorLabel;
     private JLabel yearLabel;
@@ -27,6 +27,8 @@ public class BookAdder extends JFrame implements ActionListener {
     private JComboBox<Integer> bookYear;
     private JSlider ratingSlider;
     private JTextField bookReview;
+
+    private JPanel forSlider;
     JButton addBookButton;
 
     static Color saffron = new Color(232,195,108);
@@ -35,10 +37,11 @@ public class BookAdder extends JFrame implements ActionListener {
         super("Add a Book");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setPreferredSize(new Dimension(400, 300));
-        ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));
-        setLayout(new GridLayout(6, 2, 10, 10));
-        // set the background color to yellow
-        //getContentPane().setBackground(BookMarkerGUI.bgColor);
+
+        // Create a JLabel to hold the background image
+        backgroundLabel = new JLabel(new ImageIcon("src/adderBackground.jpg"));
+        backgroundLabel.setLayout(null); // Set the layout to null
+        setContentPane(backgroundLabel);
 
         setFields();
         addLabelsAndFields();
@@ -54,11 +57,47 @@ public class BookAdder extends JFrame implements ActionListener {
         addBookButton.setActionCommand("add");
         addBookButton.addActionListener(this);
 
-        this.add(addBookButton);
+        // Set the position and size of the addBookButton
+        addBookButton.setBounds(160, 210, 100, 30);
+        backgroundLabel.add(addBookButton);
+
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+    }
+
+    private void addLabelsAndFields() {
+        titleLabel.setBounds(30, 30, 100, 20);
+        backgroundLabel.add(titleLabel);
+
+        bookTitle.setBounds(140, 30, 200, 20);
+        backgroundLabel.add(bookTitle);
+
+        authorLabel.setBounds(30, 60, 100, 20);
+        backgroundLabel.add(authorLabel);
+
+        bookAuthor.setBounds(140, 60, 200, 20);
+        backgroundLabel.add(bookAuthor);
+
+        yearLabel.setBounds(30, 90, 100, 20);
+        backgroundLabel.add(yearLabel);
+
+        bookYear.setBounds(140, 90, 200, 20);
+        backgroundLabel.add(bookYear);
+
+        ratingLabel.setBounds(30, 120, 100, 20);
+        backgroundLabel.add(ratingLabel);
+
+        forSlider = createRatingPanel();
+        forSlider.setBounds(140, 120, 200, 60);
+        backgroundLabel.add(forSlider);
+
+        reviewLabel.setBounds(30, 190, 100, 20);
+        backgroundLabel.add(reviewLabel);
+
+        bookReview.setBounds(140, 190, 200, 20);
+        backgroundLabel.add(bookReview);
     }
 
     private JTextField createTextField(int width) {
@@ -79,41 +118,28 @@ public class BookAdder extends JFrame implements ActionListener {
         comboBox.setModel(new DefaultComboBoxModel<>(years));
         comboBox.setPreferredSize(new Dimension(width, 30));
         comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-        comboBox.setForeground(Color.BLUE);
+        comboBox.setForeground(BookMarkerGUI.bgColor);
         return comboBox;
     }
 
     private void setFields() {
         titleLabel = createLabel("Title: ");
-        bookTitle = createTextField(200);
+        bookTitle = createTextField(250);
         authorLabel = createLabel("Author:");
-        bookAuthor = createTextField(200);
+        bookAuthor = createTextField(250);
         yearLabel = createLabel("Year Published:");
-        bookYear = createYearComboBox(200);
+        bookYear = createYearComboBox(250);
         ratingLabel = createLabel("Rating:");
         ratingSlider = new JSlider(0, 10);
         reviewLabel = createLabel("Review:");
-        bookReview = createTextField(200);
+        bookReview = createTextField(250);
     }
 
     private JLabel createLabel(String text) {
         JLabel temp = new JLabel(text);
-        temp.setForeground(BookMarkerGUI.buttonColor);
-        temp.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        temp.setForeground(Color.white);
+        temp.setFont(new Font("Times New Roman", Font.BOLD, 14));
         return temp;
-    }
-
-    private void addLabelsAndFields() {
-        add(titleLabel);
-        add(bookTitle);
-        add(authorLabel);
-        add(bookAuthor);
-        add(yearLabel);
-        add(bookYear);
-        add(ratingLabel);
-        add(createRatingPanel());
-        add(reviewLabel);
-        add(bookReview);
     }
 
     private JPanel createRatingPanel() {
@@ -122,7 +148,7 @@ public class BookAdder extends JFrame implements ActionListener {
         ratingSlider.setMajorTickSpacing(1);
         ratingSlider.setPaintTicks(true);
         ratingSlider.setPaintLabels(true);
-        ratingSlider.setPreferredSize(new Dimension(170, 50));
+        ratingSlider.setPreferredSize(new Dimension(190, 50));
         return panel;
     }
 
