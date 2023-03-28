@@ -123,25 +123,6 @@ public class OpenLibrary extends JFrame implements ActionListener {
                         bookDetailsFrame.setSize(400, 150);
                         bookDetailsFrame.setLocationRelativeTo(null);
 
-                        /*
-
-                        does not work yet
-
-                        // create a new JPanel for the background image
-                        JPanel backgroundPanel = new JPanel(new BorderLayout());
-                        backgroundPanel.setOpaque(true);
-
-                        // create a new JLabel with the background image
-                        ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/logo.png"));
-
-                        JLabel backgroundLabel = new JLabel(backgroundImage);
-                        backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
-
-                        // add the background label to the background panel
-                        backgroundPanel.add(backgroundLabel);
-
-                         */
-
                         // ------------------------------------------------------------------
                         // Creates a panel that adds the details of the book
                         JPanel detailsPanel = new JPanel(new GridBagLayout());
@@ -205,19 +186,6 @@ public class OpenLibrary extends JFrame implements ActionListener {
                         detailsPanel.add(reviewValueLabel, gbc);
                         // ------------------------------------------------------------------
 
-                        /*
-
-                        does not work yet
-                        // add the details panel to the center of the background panel
-                        backgroundPanel.add(detailsPanel, BorderLayout.CENTER);
-
-                        // add the background panel to the book details frame
-                        bookDetailsFrame.setContentPane(backgroundPanel);
-                        bookDetailsFrame.setVisible(true);
-
-
-
-                         */
                         // add the details panel to the background panel
                         //backgroundPanel.add(detailsPanel, BorderLayout.CENTER);
                         bookDetailsFrame.add(detailsPanel);
