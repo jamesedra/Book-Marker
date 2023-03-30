@@ -25,3 +25,13 @@ some books that I have read before that were not published, so it was hard to ke
 - As a user, I want to be given the option to load a book list/library from file.
 - As a user, I want to be given the option to save my library to file.
 
+## Instructions for the Grader
+- You can add a book to a book list by clicking "Add Book" button on the main window, which opens a window where you 
+can input the details of the book and click the "Add Book" button.
+- You can view the book list by clicking the "Open Library" button on the main window.
+- You can view the details of the book by clicking "View Book" from the "Your Library" window, after clicking the 
+"Open Library" button from the main window.
+- You can locate the visual components from the splash screen when opening the application.
+- You can save the state of the application by clicking the Save button from the main window.
+- You can reload the state of the application by clicking the Load button from the main window.
+
