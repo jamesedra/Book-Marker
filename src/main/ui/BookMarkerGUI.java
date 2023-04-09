@@ -127,7 +127,7 @@ public class BookMarkerGUI extends JFrame {
         initializeButton(removeBooksButton, "Remove Book", 20, 170,
                 new Font("Times New Roman", Font.PLAIN, 17), textColor, buttonColor);
         initializeButton(searchButton, "Search for Books", 20, 230,
-                new Font("Times New Roman", Font.PLAIN, 17), textColor, buttonColor);
+                new Font("Times New Roman", Font.PLAIN, 17), textColor, Color.GRAY);
         initializeButton(loadButton, "Load", 20, 290,
                 new Font("Times New Roman", Font.PLAIN, 17), textColor, buttonColor);
         initializeButton(saveButton, "Save", 100, 290,
@@ -138,6 +138,7 @@ public class BookMarkerGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: initializes the JFrames for the main window
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void initializeFrame() {
         frame.setTitle("Book Marker");
         frame.addWindowListener(new WindowAdapter() {
@@ -231,9 +232,15 @@ public class BookMarkerGUI extends JFrame {
         new BookAdder();
     }
 
-    public void removeBookAction() { }
+    // MODIFIES: this
+    // EFFECTS: opens a new window to prompt the user to remove a book/s
+    public void removeBookAction() {
+        new BookRemover();
+    }
 
-    public void searchBooksAction() { }
+    public void searchBooksAction() {
+        // stub
+    }
 
     // MODIFIES: this
     // EFFECTS: loads a save data of a book list

@@ -114,84 +114,89 @@ public class OpenLibrary extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("view")) {
-            String selectedTitle = bookJList.getSelectedValue();
-            if (selectedTitle != null) {
-                for (Book book : bookList.viewBookList()) {
-                    if (book.getTitle().equals(selectedTitle)) {
-                        // create new JFrame to display book details
-                        JFrame bookDetailsFrame = new JFrame(selectedTitle);
-                        bookDetailsFrame.setSize(400, 150);
-                        bookDetailsFrame.setLocationRelativeTo(null);
+            viewBookAction();
+        }
+    }
 
-                        // ------------------------------------------------------------------
-                        // Creates a panel that adds the details of the book
-                        JPanel detailsPanel = new JPanel(new GridBagLayout());
-                        detailsPanel.setOpaque(true);
-                        detailsPanel.setBackground(BookAdder.saffron);
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    public void viewBookAction() {
+        String selectedTitle = bookJList.getSelectedValue();
+        if (selectedTitle != null) {
+            for (Book book : bookList.viewBookList()) {
+                if (book.getTitle().equals(selectedTitle)) {
+                    // create new JFrame to display book details
+                    JFrame bookDetailsFrame = new JFrame(selectedTitle);
+                    bookDetailsFrame.setSize(400, 150);
+                    bookDetailsFrame.setLocationRelativeTo(null);
 
-                        // create GridBagConstraints with default values
-                        GridBagConstraints gbc = new GridBagConstraints();
+                    // ------------------------------------------------------------------
+                    // Creates a panel that adds the details of the book
+                    JPanel detailsPanel = new JPanel(new GridBagLayout());
+                    detailsPanel.setOpaque(true);
+                    detailsPanel.setBackground(BookAdder.saffron);
 
-                        // add title label to the left column
-                        JLabel titleLabel = new JLabel(" Title:");
-                        titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-                        gbc.gridx = 0;
-                        gbc.gridy = 0;
-                        gbc.anchor = GridBagConstraints.WEST; // align label to left side
-                        detailsPanel.add(titleLabel, gbc);
+                    // create GridBagConstraints with default values
+                    GridBagConstraints gbc = new GridBagConstraints();
 
-                        // add title value label to the right column
-                        JLabel titleValueLabel = createJLabelForViewingBooks(gbc, book.getTitle(),
-                                1, 0, 1.0, false);
-                        detailsPanel.add(titleValueLabel, gbc);
+                    // add title label to the left column
+                    JLabel titleLabel = new JLabel(" Title:");
+                    titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+                    gbc.gridx = 0;
+                    gbc.gridy = 0;
+                    gbc.anchor = GridBagConstraints.WEST; // align label to left side
+                    detailsPanel.add(titleLabel, gbc);
 
-                        // add author label to the left column
-                        JLabel authorLabel = createJLabelForViewingBooks(gbc, " Author: ",
-                                0, 1, 0.0, true);
-                        detailsPanel.add(authorLabel, gbc);
+                    // add title value label to the right column
+                    JLabel titleValueLabel = createJLabelForViewingBooks(gbc, book.getTitle(),
+                            1, 0, 1.0, false);
+                    detailsPanel.add(titleValueLabel, gbc);
 
-                        // add author value label to the right column
-                        JLabel authorValueLabel = createJLabelForViewingBooks(gbc, book.getAuthor(),
-                                1, 1, 1.0, false);
-                        detailsPanel.add(authorValueLabel, gbc);
+                    // add author label to the left column
+                    JLabel authorLabel = createJLabelForViewingBooks(gbc, " Author: ",
+                            0, 1, 0.0, true);
+                    detailsPanel.add(authorLabel, gbc);
 
-                        // add year published label to the left column
-                        JLabel dateLabel = createJLabelForViewingBooks(gbc, " Year: ",
-                                0, 2, 0.0, true);
-                        detailsPanel.add(dateLabel, gbc);
+                    // add author value label to the right column
+                    JLabel authorValueLabel = createJLabelForViewingBooks(gbc, book.getAuthor(),
+                            1, 1, 1.0, false);
+                    detailsPanel.add(authorValueLabel, gbc);
 
-                        // add year published value label to the right column
-                        JLabel dateValueLabel = createJLabelForViewingBooks(gbc, (String.valueOf(book.getDate())),
-                                1, 2, 1.0, false);
-                        detailsPanel.add(dateValueLabel, gbc);
+                    // add year published label to the left column
+                    JLabel dateLabel = createJLabelForViewingBooks(gbc, " Year: ",
+                            0, 2, 0.0, true);
+                    detailsPanel.add(dateLabel, gbc);
 
-                        // add rating label to the left column
-                        JLabel ratingLabel = createJLabelForViewingBooks(gbc, " Rating: ",
-                                0, 3, 0.0, true);
-                        detailsPanel.add(ratingLabel, gbc);
+                    // add year published value label to the right column
+                    JLabel dateValueLabel = createJLabelForViewingBooks(gbc, (String.valueOf(book.getDate())),
+                            1, 2, 1.0, false);
+                    detailsPanel.add(dateValueLabel, gbc);
 
-                        // add rating value label to the right column
-                        JLabel ratingValueLabel = createJLabelForViewingBooks(gbc, book.rateToStar(),
-                                1, 3, 1.0, false);
-                        detailsPanel.add(ratingValueLabel, gbc);
+                    // add rating label to the left column
+                    JLabel ratingLabel = createJLabelForViewingBooks(gbc, " Rating: ",
+                            0, 3, 0.0, true);
+                    detailsPanel.add(ratingLabel, gbc);
 
-                        // add review label to the left column
-                        JLabel reviewLabel = createJLabelForViewingBooks(gbc, " Review: ",
-                                0, 4, 0.0, true);
-                        detailsPanel.add(reviewLabel, gbc);
+                    // add rating value label to the right column
+                    JLabel ratingValueLabel = createJLabelForViewingBooks(gbc, book.rateToStar(),
+                            1, 3, 1.0, false);
+                    detailsPanel.add(ratingValueLabel, gbc);
 
-                        // add review value label to the right column
-                        JLabel reviewValueLabel = createJLabelForViewingBooks(gbc, book.printReview(),
-                                1, 4, 1.0, false);
-                        detailsPanel.add(reviewValueLabel, gbc);
-                        // ------------------------------------------------------------------
+                    // add review label to the left column
+                    JLabel reviewLabel = createJLabelForViewingBooks(gbc, " Review: ",
+                            0, 4, 0.0, true);
+                    detailsPanel.add(reviewLabel, gbc);
 
-                        // add the details panel to the background panel
-                        //backgroundPanel.add(detailsPanel, BorderLayout.CENTER);
-                        bookDetailsFrame.add(detailsPanel);
-                        bookDetailsFrame.setVisible(true);
-                        break;
-                    }
+                    // add review value label to the right column
+                    JLabel reviewValueLabel = createJLabelForViewingBooks(gbc, book.printReview(),
+                            1, 4, 1.0, false);
+                    detailsPanel.add(reviewValueLabel, gbc);
+                    // ------------------------------------------------------------------
+
+                    // add the details panel to the background panel
+                    //backgroundPanel.add(detailsPanel, BorderLayout.CENTER);
+                    bookDetailsFrame.add(detailsPanel);
+                    bookDetailsFrame.setVisible(true);
+                    break;
                 }
             }
         }
