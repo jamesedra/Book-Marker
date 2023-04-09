@@ -31,6 +31,7 @@ public class BookList implements Writable {
         if (isFull()) {
             return false;
         }
+        EventLog.getInstance().logEvent(new Event("The book " + book.getTitle() + " has been added."));
         bookList.add(book);
         return true;
     }
@@ -43,6 +44,7 @@ public class BookList implements Writable {
      */
     public boolean removeBook(Book book) {
         if (bookList.contains(book)) {
+            EventLog.getInstance().logEvent(new Event("The book " + book.getTitle() + " has been removed."));
             bookList.remove(book);
             return true;
         }

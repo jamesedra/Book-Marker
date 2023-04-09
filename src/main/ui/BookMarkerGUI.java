@@ -1,5 +1,7 @@
 package ui;
 
+import model.*;
+import model.Event;
 import model.Book;
 import model.BookList;
 import model.Rating;
@@ -11,6 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,6 +61,7 @@ public class BookMarkerGUI extends JFrame {
         initializeData();
         // close splash screen
         splashScreen.dispose();
+        EventLog.getInstance().clear();
     }
 
     public void initializeSplashScreen() {
@@ -74,7 +79,7 @@ public class BookMarkerGUI extends JFrame {
 
         // simulate loading time
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -123,6 +128,13 @@ public class BookMarkerGUI extends JFrame {
 
     public void initializeFrame() {
         frame.setTitle("Book Marker");
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                quitAction();
+            }
+        });
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(640, 480);
         frame.setResizable(false);
@@ -232,6 +244,9 @@ public class BookMarkerGUI extends JFrame {
     }
 
     public void quitAction() {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString() + "\n");
+        }
         System.exit(0);
     }
 }
