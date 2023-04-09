@@ -4,8 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-// Represents a pop-up menu displaying a message that the data has been loaded
-// DISCLAIMER: class structure based on Test:
+// Represents a window message that the data has been loaded
+// DISCLAIMER: class structure is based on Test:
 // https://stackoverflow.com/questions/6578205/swing-jlabel-text-change-on-the-running-application
 public class SuccessfulLoad extends JFrame {
     private JLabel loadMessage;
