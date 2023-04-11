@@ -82,7 +82,7 @@ public class OpenLibrary extends JFrame implements ActionListener {
         viewBook.addActionListener(this);
 
         editBook.setForeground(BookMarkerGUI.textColor);
-        editBook.setBackground(BookMarkerGUI.buttonColor);
+        editBook.setBackground(Color.GRAY);
         editBook.setBorder(BorderFactory.createEtchedBorder());
 
         buttonPanel.add(viewBook);
