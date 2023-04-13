@@ -248,6 +248,7 @@ public class BookMarkerGUI extends JFrame {
     public void loadAction() {
         try {
             bookList = reader.read();
+            EventLog.getInstance().clear();
             new SuccessfulLoad();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
