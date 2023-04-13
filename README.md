@@ -35,3 +35,18 @@ can input the details of the book and click the "Add Book" button.
 - You can save the state of the application by clicking the Save button from the main window.
 - You can reload the state of the application by clicking the Load button from the main window.
 
+## Phase 4: Task 3
+- There are some classes that I would like to do some refactoring in once I have the time. First is the BookMarkerGUI 
+class, which can be improved by its design and readability. While at first, I managed to split the methods into smaller 
+parts to improve the readability of the class, the initializeFrame() and initializeButton() methods can still be 
+improved (an example of it would be creating a method for the toolPanel.add() lines instead of just placing them all in 
+the initializeFrame() method).
+  
+- I have tried splitting up the BookMarkerGUI class into separate classes to shorten the code. This made my project 
+have additional classes in the ui folder such as the BookAdder, BookRemover, OpenLibrary, etc. What I first would like 
+to refactor from those classes is that, since I was focusing more on finishing the functionality of the program itself, 
+I placed all the methods that I needed to run in the ActionPerformed() method (or a helper method that has 30 more 
+lines of code). I would like to cut those down into smaller pieces to also improve the readability of the code. I also 
+noticed late that I might have done unnecessary imports to those classes such as ‘ui.BookMarkerGUI.book’ in the 
+BookAdder class. It does not have to be called from the BookMarkerGUI class at all, while also adding unnecessary 
+complexity that even shows in the UML diagram.
