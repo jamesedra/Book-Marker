@@ -2,51 +2,46 @@
 
 ## Mark the books that interest you.
 
-*What is Book Marker?*
-- Book Marker is an application for tracking the books the user has read, wants to read, or is currently reading.<br> 
-Possible features include the details of the books such as: the title, the author/s, the date it was published,
-the cover page, and if it belongs to a set of books (such as being included on a 7-book series). User features 
-will involve the current status if it's being read or not, the chapter or page of the book they are currently on, 
-the number of books in their log, and the user's rating and reviews when possible. <br>
+# Project Overview
 
-*Who is this for?*
-- Book Marker is for people who would like to keep track of the things they have been reading without using an
-online database in order to create a small viewpoint of their own library.
+Book Marker is an application designed to help users track the books they have read, want to read, or are currently reading. It allows users to maintain a personal library and provides features such as book details, reading progress, ratings, and reviews.
 
-*Why does this interest you?*
-- I would like to keep track of the books I have read, currently reading, or I am interested in. There are also
-some books that I have read before that were not published, so it was hard to keep track of them, even locally.
+The application aims to provide users with a simple and personalized way to keep track of their reading history, without relying on online databases. By using Book Marker, users can create a small viewpoint of their own library and easily manage their reading preferences.
 
-## User Stories
-- As a user, I want to be able to add and remove a book to the catalog
-- As a user, I want to be able to view the list of books I have read on my catalog
-- As a user, I want to be able to rate the book from one to 10 stars and add a review to it
-- As a user, I want to be able to search and select a book in my catalog to view the details and my views of the book
-- As a user, I want to be given the option to load a book list/library from file.
-- As a user, I want to be given the option to save my library to file.
+# Project Structure
 
-## Instructions for the Grader
-- You can add a book to a book list by clicking "Add Book" button on the main window, which opens a window where you 
-can input the details of the book and click the "Add Book" button.
-- You can view the book list by clicking the "Open Library" button on the main window.
-- You can view the details of the book by clicking "View Book" from the "Your Library" window, after clicking the 
-"Open Library" button from the main window.
-- You can locate the visual components from the splash screen when opening the application.
-- You can save the state of the application by clicking the Save button from the main window.
-- You can reload the state of the application by clicking the Load button from the main window.
+The project follows a structured organization to maintain code readability and maintainability. Here is an overview of the project structure:
 
-## Phase 4: Task 3
-- There are some classes that I would like to do some refactoring in once I have the time. First is the BookMarkerGUI 
-class, which can be improved by its design and readability. While at first, I managed to split the methods into smaller 
-parts to improve the readability of the class, the initializeFrame() and initializeButton() methods can still be 
-improved (an example of it would be creating a method for the toolPanel.add() lines instead of just placing them all in 
-the initializeFrame() method).
-  
-- I have tried splitting up the BookMarkerGUI class into separate classes to shorten the code. This made my project 
-have additional classes in the ui folder such as the BookAdder, BookRemover, OpenLibrary, etc. What I first would like 
-to refactor from those classes is that, since I was focusing more on finishing the functionality of the program itself, 
-I placed all the methods that I needed to run in the ActionPerformed() method (or a helper method that has 30 more 
-lines of code). I would like to cut those down into smaller pieces to also improve the readability of the code. I also 
-noticed late that I might have done unnecessary imports to those classes such as ‘ui.BookMarkerGUI.book’ in the 
-BookAdder class. It does not have to be called from the BookMarkerGUI class at all, while also adding unnecessary 
-complexity that even shows in the UML diagram.
+    ui folder: Contains the user interface classes responsible for displaying and managing the application's windows and components.
+        BookMarkerGUI.java: The main user interface class that initializes the application window and handles user interactions.
+        BookAdder.java: A class responsible for adding books to the catalog.
+        BookRemover.java: A class responsible for removing books from the catalog.
+        OpenLibrary.java: A class for viewing the book catalog and selecting books for detailed viewing.
+        (Note: Refactoring of these classes is planned to improve design, readability, and code organization.)
+
+    model folder: Contains the book-related classes and functionality.
+        Book.java: Represents a book object with properties such as title, author, publication date, cover page, etc.
+        BookList.java: Manages the list of books in the catalog, allowing users to add and remove books.
+        Rating: Represents the rating given by a user for a particular book, on a scale from one to ten stars.
+
+    Other relevant project files and resources.
+
+# UI Examples
+Home Page:
+
+<img width="467" alt="Home Page" src="https://github.com/jamesedra/Book-Marker/assets/107374254/76363752-452b-4e51-8609-24bd9a5818e5">
+
+Library Window (left) and Book Adder Window (right) :
+
+<img width="289" alt="Library Page" src="https://github.com/jamesedra/Book-Marker/assets/107374254/1377bfe0-9a93-4f09-95a2-e2a16408520e"> <img width="400" alt="Add book" src="https://github.com/jamesedra/Book-Marker/assets/107374254/1133acd3-8cc6-46cd-923a-fd2fd83bb999">
+
+# Instructions for Reviewers
+
+To review the application, please follow these instructions:
+
+    Launch the application by running Main.java in src/main/ui/Main.java
+    Use the "Add Book" button on the main window to add a book to the catalog, providing relevant details.
+    Click the "Open Library" button on the main window to view the list of books in your catalog.
+    From the "Your Library" window, click "View Book" to see the details and your personal views of a specific book.
+    Utilize the provided options to save and load your library state using the corresponding buttons on the main window.
+
